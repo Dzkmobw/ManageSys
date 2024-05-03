@@ -12,6 +12,10 @@ app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = False
 db.init_app(app)
 cors.init_app(app)
 
+@app.route('/')
+def hello():
+    return 'nihao'
+
 #终端输入flask create即可初始化数据库
 @app.cli.command() # 自定义指令
 def create():
