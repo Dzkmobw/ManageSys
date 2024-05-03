@@ -3,6 +3,7 @@ from flask import Flask
 from flask.views import MethodView
 from extension import db,cors
 from models import Player
+from typing import List
 
 app = Flask(__name__)
 
@@ -23,7 +24,7 @@ class PlayerApi(MethodView):
         #获取图书信息
         # 如果没有指定ID，返回所有球员
         if not player_id:
-            players: [Player] = Player.query.all() # 类型注释，表示Players是一个列表，列表中的元素都是Player元素
+            players: List[Player] = Player.query.all() # 类型注释，表示Players是一个列表，列表中的元素都是Player元素
             results = [
                 {
                     'id':player.id,
