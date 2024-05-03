@@ -54,7 +54,6 @@ class PlayerApi(MethodView):
                     'goals':player.goals,
                     'assists':player.assists,
                     'age':player.player_age,
-
                 }
             }
         # 返回中文
