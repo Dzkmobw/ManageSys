@@ -41,7 +41,6 @@ class PlayerApi(MethodView):
                 'message' : '数据查询成功',
                 'results': results
             }
-        # 指定了ID，返回单本书
         else:
             player: Player = Player.query.get(player_id)
             ret= {
