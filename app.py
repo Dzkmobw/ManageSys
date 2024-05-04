@@ -28,12 +28,12 @@ class PlayerApi(MethodView):
             results = [
                 {
                     'id':player.id,
-                    'player_name':player.player_name,
                     'player_number':player.player_number,
+                    'player_name':player.player_name,
+                    'player_age':player.player_age,
                     'player_position':player.player_position,
-                    'goals':player.goals,
-                    'assists':player.assists,
-                    'age':player.player_age,
+                    'player_goals':player.player_goals,
+                    'player_assists':player.player_assists,
                 } for player in players
             ] # 列表推导式
             ret = {
@@ -49,12 +49,12 @@ class PlayerApi(MethodView):
                 'message': '数据查询成功',
                 'results': {
                     'id':player.id,
-                    'player_name':player.player_name,
                     'player_number':player.player_number,
+                    'player_name':player.player_name,
+                    'player_age':player.player_age,
                     'player_position':player.player_position,
-                    'goals':player.goals,
-                    'assists':player.assists,
-                    'age':player.player_age,
+                    'player_goals':player.player_goals,
+                    'player_assists':player.player_assists,
                 }
             }
         # 返回中文
@@ -64,12 +64,12 @@ class PlayerApi(MethodView):
         #新增球员
         form = request.json
         player = Player()
-        player.player_name = form.get('player_name')
         player.player_number = form.get('player_number')
-        player.player_position = form.get('player_position')
-        player.goals = form.get('goals')
-        player.assists = form.get('assists')
+        player.player_name = form.get('player_name')
         player.player_age = form.get('player_age')
+        player.player_position = form.get('player_position')
+        player.player_goals = form.get('player_goals')
+        player.player_assists = form.get('player_assists')
         db.session.add(player)
         db.session.commit()
         ret =  {
@@ -92,12 +92,12 @@ class PlayerApi(MethodView):
     def put(self,player_id):
         #数据库更新
         player:Player = Player.query.get(player_id)
-        player.player_name = request.json.get('player_name')
         player.player_number = request.json.get('player_number')
-        player.player_position = request.json.get('player_position')
-        player.goals = request.json.get('goals')
-        player.assists = request.json.get('assists')
+        player.player_name = request.json.get('player_name')
         player.player_age = request.json.get('player_age')
+        player.player_position = request.json.get('player_position')
+        player.player_goals = request.json.get('player_goals')
+        player.player_assists = request.json.get('player_assists')
         db.session.commit()
         ret =  {
             'status': 'success',
