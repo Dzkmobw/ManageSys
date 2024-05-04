@@ -12,10 +12,6 @@ app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = False
 db.init_app(app)
 cors.init_app(app)
 
-@app.route('/')
-def hello():
-    return 'nihao'
-
 #终端输入flask create即可初始化数据库
 @app.cli.command() # 自定义指令
 def create():
@@ -110,15 +106,15 @@ class PlayerApi(MethodView):
         return json.dumps(ret, ensure_ascii=False)
 
 player_view = PlayerApi.as_view('player_api')
+
 # 注意斜杠问题
-app.add_url_rule('/books/',
-                 defaults={'player_id':None},
-                 view_func=player_view,methods=['GET',])
-app.add_url_rule('/books/',
-                 view_func=player_view,methods=['POST',])
-app.add_url_rule('/books/<int:player_id>',
-                 view_func=player_view,
-                 methods=['GET','PUT','DELETE'])
+@app.route('/')
+def hello():
+    return 'nihao'
+
+app.add_url_rule('/books/', defaults={'player_id':None}, view_func=player_view,methods=['GET',])
+app.add_url_rule('/books/', view_func=player_view, methods=['POST',])
+app.add_url_rule('/books/<int:player_id>', view_func=player_view, methods=['GET','PUT','DELETE'])
 
 if __name__ == '__main__':
     app.run(debug=True)
