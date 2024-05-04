@@ -7,7 +7,7 @@ from typing import List
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:mysqlPassw0rd@localhost:3306/testdb?charset=utf8mb4'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///players.sqlite'
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = False
 db.init_app(app)
 cors.init_app(app)
