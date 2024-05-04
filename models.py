@@ -16,6 +16,8 @@ class Player(db.Model):
         db.create_all()
         rets = [
             (1, '21', '安东尼·马特乌斯·多斯·桑托斯', 21, 'LeftBack', 114, 514),
+            (2, '15', '尼古拉斯·杰克逊', 22, 'ST', 0, 0),
+
         ]
         for ret in rets:
             player = Player()
