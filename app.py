@@ -1,5 +1,4 @@
-from flask import request, json
-from flask import Flask
+from flask import request, json, Flask
 from flask.views import MethodView
 from extension import db,cors
 from models import Player
@@ -19,9 +18,10 @@ def create():
     db.create_all() # 创建一个新的数据表
     Player.init_db()  # 初始化数据
 
+
 class PlayerApi(MethodView):
     def get(self,player_id):
-        #获取图书信息
+        #获取球员信息
         # 如果没有指定ID，返回所有球员
         if not player_id:
             players: List[Player] = Player.query.all() # 类型注释，表示Players是一个列表，列表中的元素都是Player元素
@@ -111,9 +111,9 @@ player_view = PlayerApi.as_view('player_api')
 def hello():
     return 'nihao'
 
-app.add_url_rule('/books/', defaults={'player_id':None}, view_func=player_view,methods=['GET',])
-app.add_url_rule('/books/', view_func=player_view, methods=['POST',])
-app.add_url_rule('/books/<int:player_id>', view_func=player_view, methods=['GET','PUT','DELETE'])
+app.add_url_rule('/players/', defaults={'player_id':None}, view_func=player_view,methods=['GET',])
+app.add_url_rule('/players/', view_func=player_view, methods=['POST',])
+app.add_url_rule('/players/<int:player_id>', view_func=player_view, methods=['GET','PUT','DELETE'])
 
 if __name__ == '__main__':
     app.run(debug=True)
